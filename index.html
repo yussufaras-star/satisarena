@@ -1480,12 +1480,7 @@ function showChannelBadge() {
   const cfg = getChannelConfig(S.kanal);
   if (!cfg) return;
   badge.style.display = 'flex';
-  badge.innerHTML = \`
-    <div class="channel-badge-icon">\${cfg.svg}</div>
-    <div class="channel-badge-info">
-      <span class="channel-badge-name">\${cfg.name}</span>
-      <span class="channel-badge-sub">\${cfg.sub}</span>
-    </div>\`;
+  badge.innerHTML = '<div class="channel-badge-icon">' + cfg.svg + '</div><div class="channel-badge-info"><span class="channel-badge-name">' + cfg.name + '</span><span class="channel-badge-sub">' + cfg.sub + '</span></div>';
 }
 
 // ── SKOR GEÇMİŞİ ──
