@@ -832,6 +832,37 @@
   }
   .demo-badge:hover { color: var(--ink2); }
 
+
+  /* ── KANAL BADGE ── */
+  .channel-badge {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 8px 16px;
+    border-bottom: 1px solid var(--rule);
+    background: var(--paper2);
+  }
+  .channel-badge-icon {
+    width: 28px; height: 28px;
+    border-radius: 6px;
+    background: var(--red-lt);
+    display: flex; align-items: center; justify-content: center;
+    flex-shrink: 0;
+  }
+  .channel-badge-icon svg { width: 14px; height: 14px; fill: var(--red); }
+  .channel-badge-info { display: flex; flex-direction: column; gap: 1px; }
+  .channel-badge-name {
+    font-size: 12px;
+    font-weight: 500;
+    color: var(--ink);
+    letter-spacing: 0.01em;
+  }
+  .channel-badge-sub {
+    font-size: 10px;
+    font-family: 'JetBrains Mono', monospace;
+    color: var(--ink3);
+    letter-spacing: 0.04em;
+  }
 </style>
 </head>
 <body>
@@ -896,7 +927,7 @@
       <div class="landing-err" id="access-err"></div>
       <div class="landing-access-note">
         Henüz kodu yok mu? <a href="https://www.shopier.com/satismuhendisligi/46861026" target="_blank">Shopier'den satın al</a> &nbsp;·&nbsp;
-        <span class="demo-badge" id="demo-link" style="opacity:0.45;font-size:10px;">Demo</span>
+
       </div>
     </div>
 
@@ -945,6 +976,7 @@
     </div>
   </div>
 
+  <div class="channel-badge" id="channel-badge" style="display:none"></div>
   <div class="msgs" id="msgs">
     <div class="msg from-system">
       <div class="msg-avatar"><svg viewBox="0 0 14 14" xmlns="http://www.w3.org/2000/svg"><circle cx="7" cy="7" r="5.5" fill="none" stroke-width="1.2"/><circle cx="7" cy="7" r="2.5" fill="none" stroke-width="1.2"/><circle cx="7" cy="7" r="0.8"/></svg></div>
@@ -1228,10 +1260,7 @@ function initLanding() {
   document.getElementById('access-code-input').addEventListener('keydown', e => {
     if (e.key === 'Enter') handleAccess();
   });
-  document.getElementById('demo-link').onclick = () => {
-    document.getElementById('access-code-input').value = 'DEMO';
-    handleAccess();
-  };
+
 }
 
 function handleAccess() {
@@ -1286,6 +1315,7 @@ document.getElementById('cta').onclick = async () => {
   document.getElementById('key-panel').remove();
   document.getElementById('hdr-ctx').textContent = `${S.sektor} · ${S.asama?.split(' ')[0]} · ${S.zorluk?.split(' ')[0]}`;
   document.getElementById('live-badge').classList.add('on');
+  showChannelBadge();
   document.getElementById('timer').classList.add('on');
   // Start timer
   let secs = 0;
@@ -1407,6 +1437,55 @@ function addMsg(type, who, initials, text) {
       <div class="msg-text">${text.replace(/\n/g,'<br>')}</div>
     </div>`;
   b.appendChild(d); b.scrollTop=b.scrollHeight;
+}
+
+
+function getChannelConfig(kanal) {
+  if (!kanal) return null;
+  const k = kanal.toLowerCase();
+  if (k.includes('instagram') || k.includes('whatsapp') || k.includes('dm')) return {
+    name: 'DM', sub: 'Instagram · WhatsApp',
+    svg: '<svg viewBox="0 0 16 16" fill="currentColor"><path d="M16 8c0 3.866-3.582 7-8 7a9.06 9.06 0 0 1-2.347-.306c-.584.296-1.925.864-4.181 1.234-.2.032-.352-.176-.273-.362.354-.836.674-1.95.77-2.966C.744 11.37 0 9.76 0 8c0-3.866 3.582-7 8-7s8 3.134 8 7z"/></svg>'
+  };
+  if (k.includes('linkedin')) return {
+    name: 'LinkedIn', sub: 'DM · Sales Navigator',
+    svg: '<svg viewBox="0 0 16 16" fill="currentColor"><path d="M0 1.146C0 .513.526 0 1.175 0h13.65C15.474 0 16 .513 16 1.146v13.708c0 .633-.526 1.146-1.175 1.146H1.175C.526 16 0 15.487 0 14.854V1.146zm4.943 12.248V6.169H2.542v7.225h2.401zm-1.2-8.212c.837 0 1.358-.554 1.358-1.248-.015-.709-.52-1.248-1.342-1.248-.822 0-1.359.54-1.359 1.248 0 .694.521 1.248 1.327 1.248h.016zm4.908 8.212V9.359c0-.216.016-.432.08-.586.173-.431.568-.878 1.232-.878.869 0 1.216.662 1.216 1.634v3.865h2.401V9.25c0-2.22-1.184-3.252-2.764-3.252-1.274 0-1.845.7-2.165 1.193v.025h-.016V6.169h-2.4c.03.678 0 7.225 0 7.225h2.4z"/></svg>'
+  };
+  if (k.includes('telefon') || k.includes('sesli')) return {
+    name: 'Telefon Görüşmesi', sub: 'Sesli · Gerçek zamanlı',
+    svg: '<svg viewBox="0 0 16 16" fill="currentColor"><path d="M3.654 1.328a.678.678 0 0 0-1.015-.063L1.605 2.3c-.483.484-.661 1.169-.45 1.77a17.568 17.568 0 0 0 4.168 6.608 17.569 17.569 0 0 0 6.608 4.168c.601.211 1.286.033 1.77-.45l1.034-1.034a.678.678 0 0 0-.063-1.015l-2.307-1.794a.678.678 0 0 0-.58-.122l-2.19.547a1.745 1.745 0 0 1-1.657-.459L5.482 8.062a1.745 1.745 0 0 1-.46-1.657l.548-2.19a.678.678 0 0 0-.122-.58L3.654 1.328z"/></svg>'
+  };
+  if (k.includes('toplantı') || k.includes('yüz')) return {
+    name: 'Yüz Yüze Toplantı', sub: 'Saha · Fiziksel ortam',
+    svg: '<svg viewBox="0 0 16 16" fill="currentColor"><path d="M7 14s-1 0-1-1 1-4 5-4 5 3 5 4-1 1-1 1H7zm4-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"/><path fill-rule="evenodd" d="M5.216 14A2.238 2.238 0 0 1 5 13c0-1.355.68-2.75 1.936-3.72A6.325 6.325 0 0 0 5 9c-4 0-5 3-5 4s1 1 1 1h4.216z"/><path d="M4.5 8a2.5 2.5 0 1 0 0-5 2.5 2.5 0 0 0 0 5z"/></svg>'
+  };
+  if (k.includes('video') || k.includes('zoom') || k.includes('online')) return {
+    name: 'Video Görüşme', sub: 'Zoom · Google Meet',
+    svg: '<svg viewBox="0 0 16 16" fill="currentColor"><path d="M0 5a2 2 0 0 1 2-2h7.5a2 2 0 0 1 1.983 1.738l3.11-1.382A1 1 0 0 1 16 4.269v7.462a1 1 0 0 1-1.406.913l-3.111-1.382A2 2 0 0 1 9.5 13H2a2 2 0 0 1-2-2V5z"/></svg>'
+  };
+  if (k.includes('e-posta') || k.includes('mail') || k.includes('yazılı')) return {
+    name: 'E-posta', sub: 'Yazılı · Asenkron',
+    svg: '<svg viewBox="0 0 16 16" fill="currentColor"><path d="M.05 3.555A2 2 0 0 1 2 2h12a2 2 0 0 1 1.95 1.555L8 8.414.05 3.555zM0 4.697v7.104l5.803-3.558L0 4.697zM6.761 8.83l-6.57 4.027A2 2 0 0 0 2 14h12a2 2 0 0 0 1.808-1.144l-6.57-4.027L8 9.586l-1.239-.757zm3.436-.586L16 11.801V4.697l-5.803 3.546z"/></svg>'
+  };
+  if (k.includes('kurumsal') || k.includes('b2b')) return {
+    name: 'Kurumsal B2B', sub: 'Çok paydaşlı · Uzun süreç',
+    svg: '<svg viewBox="0 0 16 16" fill="currentColor"><path d="M14.763.075A.5.5 0 0 1 15 .5v15a.5.5 0 0 1-.5.5h-3a.5.5 0 0 1-.5-.5V14h-1v1.5a.5.5 0 0 1-.5.5h-9a.5.5 0 0 1-.5-.5V10a.5.5 0 0 1 .342-.474L6 7.64V4.5a.5.5 0 0 1 .276-.447l8-4a.5.5 0 0 1 .487.022z"/></svg>'
+  };
+  return { name: kanal.split('(')[0].trim(), sub: 'Satış görüşmesi', svg: '<svg viewBox="0 0 16 16" fill="currentColor"><path d="M14 1a1 1 0 0 1 1 1v8a1 1 0 0 1-1 1H4.414A2 2 0 0 0 3 11.586l-2 2V2a1 1 0 0 1 1-1h12z"/></svg>' };
+}
+
+function showChannelBadge() {
+  const badge = document.getElementById('channel-badge');
+  if (!badge || !S.kanal) return;
+  const cfg = getChannelConfig(S.kanal);
+  if (!cfg) return;
+  badge.style.display = 'flex';
+  badge.innerHTML = \`
+    <div class="channel-badge-icon">\${cfg.svg}</div>
+    <div class="channel-badge-info">
+      <span class="channel-badge-name">\${cfg.name}</span>
+      <span class="channel-badge-sub">\${cfg.sub}</span>
+    </div>\`;
 }
 
 // ── SKOR GEÇMİŞİ ──
