@@ -312,13 +312,14 @@
   }
   .score-number {
     font-family: 'Libre Baskerville', serif;
-    font-size: 28px;
+    font-size: 44px;
     font-weight: 700;
     color: #fff;
     line-height: 1;
+    letter-spacing: -0.02em;
   }
   .score-number span {
-    font-size: 13px;
+    font-size: 16px;
     font-weight: 300;
     color: rgba(255,255,255,0.4);
   }
@@ -515,10 +516,396 @@
     letter-spacing: 0.1em; text-transform: uppercase; color: var(--ink3);
   }
   .divider::before, .divider::after { content:''; flex:1; height:1px; background:var(--rule); }
+
+  /* ── GEÇMİŞ SKORLAR ── */
+  .history-panel {
+    margin-top: 12px;
+    background: var(--paper2);
+    border: 1px solid var(--rule);
+    border-radius: 8px;
+    overflow: hidden;
+  }
+  .history-header {
+    padding: 10px 16px;
+    border-bottom: 1px solid var(--rule);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .history-title {
+    font-size: 10px;
+    font-family: 'JetBrains Mono', monospace;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--ink3);
+  }
+  .history-avg {
+    font-size: 10px;
+    font-family: 'JetBrains Mono', monospace;
+    color: var(--ink2);
+  }
+  .history-list {
+    padding: 8px 0;
+  }
+  .history-item {
+    display: flex;
+    gap: 10px;
+    padding: 10px 16px;
+    border-bottom: 1px solid var(--rule);
+  }
+  .history-item:last-child { border-bottom: none; }
+  .history-idx {
+    font-size: 10px;
+    font-family: 'JetBrains Mono', monospace;
+    color: var(--ink3);
+    width: 20px;
+    flex-shrink: 0;
+    padding-top: 2px;
+  }
+  .history-main { flex: 1; display: flex; flex-direction: column; gap: 6px; }
+  .history-params {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 3px;
+  }
+  .h-tag {
+    font-size: 11px;
+    font-weight: 400;
+    color: var(--ink);
+    background: var(--paper3);
+    border-radius: 4px;
+    padding: 2px 7px;
+    white-space: nowrap;
+  }
+  .h-sep { font-size: 10px; color: var(--ink3); }
+  .history-bottom {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .history-score-bar {
+    flex: 1;
+    height: 3px;
+    background: var(--rule);
+    border-radius: 2px;
+    overflow: hidden;
+  }
+  .history-score-fill {
+    height: 100%;
+    border-radius: 2px;
+    transition: width 0.8s ease;
+  }
+  .history-score-val {
+    font-size: 13px;
+    font-family: 'Libre Baskerville', serif;
+    font-weight: 700;
+    flex-shrink: 0;
+  }
+  .history-score-val span { font-size: 10px; font-weight: 300; color: var(--ink3); }
+  .history-durum-badge {
+    font-size: 9px;
+    font-family: 'JetBrains Mono', monospace;
+    letter-spacing: 0.06em;
+    padding: 2px 7px;
+    border-radius: 3px;
+    flex-shrink: 0;
+  }
+  .history-durum-badge.alindi { background: rgba(46,125,82,0.12); color: #2E7D52; }
+  .history-durum-badge.kalkildi { background: rgba(192,57,43,0.1); color: var(--red); }
+  .history-durum-badge.ghosted { background: var(--paper3); color: var(--ink3); }
+  .history-time {
+    font-size: 10px;
+    font-family: 'JetBrains Mono', monospace;
+    color: var(--ink3);
+    flex-shrink: 0;
+  }
+  .history-empty {
+    padding: 14px 16px;
+    font-size: 12px;
+    color: var(--ink3);
+    font-style: italic;
+  }
+
+  /* ── LANDING EKRANI ── */
+  .landing {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 48px 24px;
+    max-width: 620px;
+    margin: 0 auto;
+  }
+  .landing-logo {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 48px;
+  }
+  .landing-logo-mark {
+    width: 32px; height: 32px;
+    background: var(--red);
+    border-radius: 8px;
+    display: flex; align-items: center; justify-content: center;
+  }
+  .landing-logo-mark svg { width: 14px; height: 14px; fill: #fff; }
+  .landing-logo-text {
+    display: flex; flex-direction: column; gap: 1px;
+  }
+  .landing-logo-name {
+    font-family: 'Libre Baskerville', serif;
+    font-size: 14px;
+    font-weight: 400;
+    color: var(--ink);
+    letter-spacing: 0.01em;
+  }
+  .landing-logo-name span { color: var(--red); }
+  .landing-logo-sub {
+    font-size: 10px;
+    font-family: 'JetBrains Mono', monospace;
+    color: var(--ink3);
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+  }
+
+  .landing-hero {
+    margin-bottom: 40px;
+  }
+  .landing-eyebrow {
+    font-size: 10px;
+    font-family: 'JetBrains Mono', monospace;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--red);
+    margin-bottom: 14px;
+  }
+  .landing-headline {
+    font-family: 'Libre Baskerville', serif;
+    font-size: 28px;
+    font-weight: 400;
+    color: var(--ink);
+    line-height: 1.35;
+    letter-spacing: -0.01em;
+    margin-bottom: 16px;
+  }
+  .landing-headline em {
+    font-style: italic;
+    color: var(--red);
+  }
+  .landing-desc {
+    font-size: 14px;
+    line-height: 1.75;
+    color: var(--ink2);
+    font-weight: 300;
+    max-width: 480px;
+  }
+
+  .landing-how {
+    margin-bottom: 40px;
+    border: 1px solid var(--rule);
+    border-radius: 10px;
+    overflow: hidden;
+  }
+  .landing-how-header {
+    padding: 14px 20px;
+    border-bottom: 1px solid var(--rule);
+    background: var(--paper2);
+  }
+  .landing-how-title {
+    font-size: 10px;
+    font-family: 'JetBrains Mono', monospace;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--ink3);
+  }
+  .landing-steps {
+    padding: 4px 0;
+  }
+  .landing-step {
+    display: flex;
+    gap: 14px;
+    padding: 14px 20px;
+    border-bottom: 1px solid var(--rule);
+    align-items: flex-start;
+  }
+  .landing-step:last-child { border-bottom: none; }
+  .landing-step-num {
+    width: 22px; height: 22px;
+    border-radius: 50%;
+    background: var(--paper3);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 10px;
+    font-family: 'JetBrains Mono', monospace;
+    font-weight: 500;
+    color: var(--ink2);
+    flex-shrink: 0;
+    margin-top: 1px;
+  }
+  .landing-step-content { flex: 1; }
+  .landing-step-title {
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--ink);
+    margin-bottom: 3px;
+  }
+  .landing-step-desc {
+    font-size: 12px;
+    color: var(--ink2);
+    font-weight: 300;
+    line-height: 1.6;
+  }
+  .landing-step-desc a {
+    color: var(--red);
+    text-decoration: none;
+  }
+  .landing-step-desc a:hover { text-decoration: underline; }
+
+  .landing-access {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+  .landing-access-row {
+    display: flex;
+    gap: 8px;
+  }
+  .landing-code-input {
+    flex: 1;
+    background: var(--paper2);
+    border: 1px solid var(--rule);
+    border-radius: 7px;
+    padding: 12px 14px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 13px;
+    color: var(--ink);
+    outline: none;
+    letter-spacing: 0.08em;
+    transition: border-color 0.2s;
+    text-transform: uppercase;
+  }
+  .landing-code-input::placeholder { color: var(--ink3); text-transform: none; letter-spacing: 0; }
+  .landing-code-input:focus { border-color: var(--ink2); }
+  .landing-enter-btn {
+    background: var(--red);
+    color: #fff;
+    border: none;
+    border-radius: 7px;
+    padding: 12px 22px;
+    font-family: 'Libre Baskerville', serif;
+    font-size: 14px;
+    font-style: italic;
+    cursor: pointer;
+    transition: opacity 0.15s;
+    white-space: nowrap;
+    box-shadow: 0 2px 10px rgba(192,57,43,0.2);
+  }
+  .landing-enter-btn:hover { opacity: 0.87; }
+  .landing-access-note {
+    font-size: 11px;
+    color: var(--ink3);
+    font-family: 'JetBrains Mono', monospace;
+    letter-spacing: 0.04em;
+  }
+  .landing-access-note a { color: var(--ink2); text-decoration: none; }
+  .landing-access-note a:hover { text-decoration: underline; }
+  .landing-err {
+    font-size: 12px;
+    color: var(--red);
+    font-family: 'JetBrains Mono', monospace;
+    min-height: 16px;
+  }
+
+  /* Demo modu etiketi */
+  .demo-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    font-size: 10px;
+    font-family: 'JetBrains Mono', monospace;
+    letter-spacing: 0.06em;
+    color: var(--ink3);
+    cursor: pointer;
+    margin-top: 4px;
+    text-decoration: underline;
+    text-underline-offset: 3px;
+  }
+  .demo-badge:hover { color: var(--ink2); }
+
 </style>
 </head>
 <body>
-<div class="shell">
+<div id="landing-screen">
+  <div class="landing">
+
+    <div class="landing-logo">
+      <div class="landing-logo-mark">
+        <svg viewBox="0 0 14 14"><polygon points="7,1 13,12 1,12"/></svg>
+      </div>
+      <div class="landing-logo-text">
+        <span class="landing-logo-name"><span>Arena</span> — Satış Mühendisliği™</span>
+        <span class="landing-logo-sub">by Yusuf Aras</span>
+      </div>
+    </div>
+
+    <div class="landing-hero">
+      <div class="landing-eyebrow">Satış Pratiği · AI Destekli</div>
+      <h1 class="landing-headline">Sahada kaybetmeden önce<br><em>burada kazan.</em></h1>
+      <p class="landing-desc">Arena, gerçek saha koşullarını simüle eden bir satış antrenman aracıdır. Farklı müşteri tipleri, sektörler ve kanallarla pratik yap — her senaryonun sonunda nerede güçlü, nerede gelişmen gerektiği net analizle önüne gelir.</p>
+    </div>
+
+    <div class="landing-how">
+      <div class="landing-how-header">
+        <span class="landing-how-title">Nasıl Çalışır?</span>
+      </div>
+      <div class="landing-steps">
+        <div class="landing-step">
+          <div class="landing-step-num">1</div>
+          <div class="landing-step-content">
+            <div class="landing-step-title">Erişim kodunu gir</div>
+            <div class="landing-step-desc">Arena'ya erişmek için bir erişim kodu gerekiyor. Kodunu <a href="https://shopier.com" target="_blank">Shopier üzerinden</a> satın alabilirsin.</div>
+          </div>
+        </div>
+        <div class="landing-step">
+          <div class="landing-step-num">2</div>
+          <div class="landing-step-content">
+            <div class="landing-step-title">Anthropic API key'ini ekle</div>
+            <div class="landing-step-desc">Arena, yapay zeka için Anthropic API kullanır. <a href="https://console.anthropic.com" target="_blank">console.anthropic.com</a> adresinden ücretsiz key al — yeni hesaplara $5 kredi tanınır, her senaryo ~$0.02 tutar.</div>
+          </div>
+        </div>
+        <div class="landing-step">
+          <div class="landing-step-num">3</div>
+          <div class="landing-step-content">
+            <div class="landing-step-title">Sahayı seç, masaya otur</div>
+            <div class="landing-step-desc">Müşteri tipi, sektör, kanal, lead sıcaklığı, satış aşaması ve zorluk seviyeni belirle. AI gerçekçi bir müşteri karakteriyle karşına çıkar.</div>
+          </div>
+        </div>
+        <div class="landing-step">
+          <div class="landing-step-num">4</div>
+          <div class="landing-step-content">
+            <div class="landing-step-title">Analiz raporunu al</div>
+            <div class="landing-step-desc">Senaryo bittikten sonra skor, durum ve stratejik öneri içeren detaylı bir analiz raporu gelir. Gelişim geçmişin birikmeye başlar.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="landing-access">
+      <div class="landing-access-row">
+        <input class="landing-code-input" id="access-code-input" type="text" placeholder="Erişim kodunu gir…" autocomplete="off" spellcheck="false" />
+        <button class="landing-enter-btn" id="access-enter-btn">Gir →</button>
+      </div>
+      <div class="landing-err" id="access-err"></div>
+      <div class="landing-access-note">
+        Henüz kodu yok mu? <a href="https://shopier.com" target="_blank">Shopier'den satın al</a> &nbsp;·&nbsp;
+        <span class="demo-badge" id="demo-link">Demo olarak dene</span>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<div class="shell" id="main-shell" style="display:none">
 
   <header class="hdr">
     <div class="hdr-top">
@@ -548,6 +935,16 @@
       <button class="key-btn" id="key-save">Kaydet</button>
     </div>
     <div class="key-note" id="key-note">console.anthropic.com → API Keys</div>
+  </div>
+
+  <div class="history-panel" id="history-panel" style="margin:0 0 0;border-radius:0;border-left:none;border-right:none;border-top:none;">
+    <div class="history-header">
+      <span class="history-title">Gelişim Geçmişi</span>
+      <span class="history-avg" id="history-avg"></span>
+    </div>
+    <div class="history-list" id="history-container">
+      <div class="history-empty">Henüz tamamlanan senaryo yok.</div>
+    </div>
   </div>
 
   <div class="msgs" id="msgs">
@@ -810,6 +1207,56 @@
 </div>
 
 <script>
+// ── ERİŞİM KODU ──
+// Kodları buraya ekle — her biri tek kullanımlık veya çok kullanımlık olabilir
+const VALID_CODES = ['ARENA2024', 'SATISMUH', 'YUSUF001', 'DEMO2025'];
+const USED_CODES_KEY = 'arena_used_codes';
+
+function checkAccessCode(code) {
+  const upper = code.trim().toUpperCase();
+  if (upper === 'DEMO') return { valid: true, demo: true };
+  return { valid: VALID_CODES.includes(upper), demo: false };
+}
+
+function initLanding() {
+  // Daha önce giriş yaptıysa direkt aç
+  const saved = sessionStorage.getItem('arena_access');
+  if (saved === 'granted') {
+    showArena();
+    return;
+  }
+
+  document.getElementById('access-enter-btn').onclick = handleAccess;
+  document.getElementById('access-code-input').addEventListener('keydown', e => {
+    if (e.key === 'Enter') handleAccess();
+  });
+  document.getElementById('demo-link').onclick = () => {
+    document.getElementById('access-code-input').value = 'DEMO';
+    handleAccess();
+  };
+}
+
+function handleAccess() {
+  const code = document.getElementById('access-code-input').value;
+  const result = checkAccessCode(code);
+  const errEl = document.getElementById('access-err');
+
+  if (!result.valid) {
+    errEl.textContent = 'Geçersiz erişim kodu. Shopier'den satın alabilirsin.';
+    document.getElementById('access-code-input').style.borderColor = 'var(--red)';
+    return;
+  }
+
+  sessionStorage.setItem('arena_access', 'granted');
+  showArena();
+}
+
+function showArena() {
+  document.getElementById('landing-screen').style.display = 'none';
+  document.getElementById('main-shell').style.display = 'flex';
+  renderHistory();
+}
+
 const S = { key:'', musteri:null, sektor:null, kanal:null, sicaklik:null, asama:null, paket:null, zorluk:null, history:[], busy:false, timer:null };
 
 document.getElementById('key-save').onclick = () => {
@@ -918,7 +1365,7 @@ KURALLAR:
 
 SATIŞ ANALİZ RAPORU
 Skor: [0-100]
-Durum: [SATIN ALINDI] veya [MASADAN KALKILDI] veya [GHOSTED]
+Durum: [KAZANILDI] veya [KAYBEDİLDİ] veya [TERKEDİLDİ]
 
 Kritik Hatalar (Acı Reçete):
 [Satışçının nerede çuvalladığını maddeler halinde, net ve acı bir dille yaz]
@@ -964,13 +1411,88 @@ function addMsg(type, who, initials, text) {
   b.appendChild(d); b.scrollTop=b.scrollHeight;
 }
 
+// ── SKOR GEÇMİŞİ ──
+const scoreHistory = JSON.parse(localStorage.getItem('arena_history') || '[]');
+
+function saveToHistory(skor, durum, durumClass) {
+  const entry = {
+    skor: parseInt(skor) || 0,
+    durum,
+    durumClass,
+    musteri: S.musteri?.split('—')[0].trim() || '—',
+    sektor: S.sektor?.split('/')[0].trim() || '—',
+    kanal: S.kanal?.split('(')[0].trim() || '—',
+    sicaklik: S.sicaklik?.split('—')[0].trim() || '—',
+    asama: S.asama?.split('—')[0].trim() || '—',
+    paket: S.paket?.split('(')[0].trim() || '—',
+    zorluk: S.zorluk?.split('—')[0].trim() || '—',
+    time: new Date().toLocaleTimeString('tr-TR', {hour:'2-digit',minute:'2-digit'})
+  };
+  scoreHistory.push(entry);
+  try { localStorage.setItem('arena_history', JSON.stringify(scoreHistory.slice(-20))); } catch(e) {}
+  renderHistory();
+}
+
+function renderHistory() {
+  const container = document.getElementById('history-container');
+  if (!container) return;
+  if (scoreHistory.length === 0) {
+    container.innerHTML = '<div class="history-empty">Henüz tamamlanan senaryo yok.</div>';
+    return;
+  }
+  const avg = Math.round(scoreHistory.reduce((s,e) => s + e.skor, 0) / scoreHistory.length);
+  const avgEl = document.getElementById('history-avg');
+  if (avgEl) avgEl.textContent = `Ort. ${avg}/100`;
+
+  container.innerHTML = scoreHistory.slice().reverse().map((e, i) => {
+    const barColor = e.skor >= 80 ? '#3A7D52' : e.skor >= 60 ? '#C9A84C' : '#C0392B';
+    const durumLabel = e.durum === 'KAZANILDI' ? 'ALINDI' : e.durum === 'KAYBEDİLDİ' ? 'KALKILDI' : 'TERKEDİLDİ';
+    const idx = scoreHistory.length - i;
+    return `<div class="history-item">
+      <div class="history-idx">#${idx}</div>
+      <div class="history-main">
+        <div class="history-params">
+          <span class="h-tag">${e.musteri}</span>
+          <span class="h-sep">·</span>
+          <span class="h-tag">${e.sektor}</span>
+          <span class="h-sep">·</span>
+          <span class="h-tag">${e.kanal}</span>
+          <span class="h-sep">·</span>
+          <span class="h-tag">${e.sicaklik}</span>
+          <span class="h-sep">·</span>
+          <span class="h-tag">${e.asama}</span>
+          <span class="h-sep">·</span>
+          <span class="h-tag">${e.paket}</span>
+          <span class="h-sep">·</span>
+          <span class="h-tag">${e.zorluk}</span>
+        </div>
+        <div class="history-bottom">
+          <div class="history-score-bar"><div class="history-score-fill" style="width:${e.skor}%;background:${barColor}"></div></div>
+          <span class="history-score-val" style="color:${barColor}">${e.skor}<span>/100</span></span>
+          <span class="history-durum-badge ${e.durumClass}">${durumLabel}</span>
+          <span class="history-time">${e.time}</span>
+        </div>
+      </div>
+    </div>`;
+  }).join('');
+}
+
+function cleanMarkdown(text) {
+  return text
+    .replace(/\*\*([^*]+)\*\*/g, '$1')
+    .replace(/\*([^*]+)\*/g, '$1')
+    .replace(/^[\*\-]\s+/gm, '• ')
+    .replace(/^\d+\.\s+/gm, (m) => m)
+    .trim();
+}
+
 function parseReport(text) {
   const skorMatch = text.match(/Skor[:\s]*(\d+)/i);
   const skor = skorMatch ? skorMatch[1] : '—';
   let durum = '—', durumClass = '';
-  if (/SATIN ALINDI/i.test(text)) { durum = 'SATIN ALINDI'; durumClass = 'alindi'; }
-  else if (/MASADAN KALKILDI/i.test(text)) { durum = 'MASADAN KALKILDI'; durumClass = 'kalkildi'; }
-  else if (/GHOSTED/i.test(text)) { durum = 'GHOSTED'; durumClass = 'ghosted'; }
+  if (/KAZANILDI/i.test(text)) { durum = 'KAZANILDI'; durumClass = 'alindi'; }
+  else if (/KAYBEDİLDİ/i.test(text)) { durum = 'KAYBEDİLDİ'; durumClass = 'kalkildi'; }
+  else if (/TERKEDİLDİ/i.test(text)) { durum = 'TERKEDİLDİ'; durumClass = 'ghosted'; }
   function extractSection(start, end) {
     const rx = new RegExp(start + '[\\s\\S]*?(?=' + end + '|$)', 'i');
     const m = text.match(rx);
@@ -989,7 +1511,7 @@ function addScore(text) {
   d.className = 'msg from-system';
   const r = parseReport(text);
   const tsvg = `<svg viewBox="0 0 14 14" xmlns="http://www.w3.org/2000/svg"><circle cx="7" cy="7" r="5.5" fill="none" stroke="currentColor" stroke-width="1.2"/><circle cx="7" cy="7" r="2.5" fill="none" stroke="currentColor" stroke-width="1.2"/><circle cx="7" cy="7" r="0.8" fill="currentColor"/></svg>`;
-  const fmt = t => t.replace(/\n/g,'<br>');
+  const fmt = t => cleanMarkdown(t).replace(/\n/g,'<br>');
   d.innerHTML = `
     <div class="msg-avatar">${tsvg}</div>
     <div class="msg-content">
@@ -1022,6 +1544,7 @@ function addScore(text) {
       </div>
     </div>`;
   b.appendChild(d); b.scrollTop = b.scrollHeight;
+  saveToHistory(r.skor, r.durum, r.durumClass);
 }
 
 let tyEl=null;
@@ -1038,6 +1561,9 @@ function showTyping() {
   b.appendChild(tyEl); b.scrollTop=b.scrollHeight;
 }
 function hideTyping() { if(tyEl){tyEl.remove();tyEl=null;} }
+
+// Init
+initLanding();
 </script>
 </body>
 </html>
