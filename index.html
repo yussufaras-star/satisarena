@@ -863,6 +863,28 @@
     color: var(--ink3);
     letter-spacing: 0.04em;
   }
+
+  /* ── DİKTE BUTONU ── */
+  .mic-btn {
+    width: 44px; height: 44px;
+    background: var(--paper3);
+    border: 1px solid var(--rule);
+    border-radius: 7px;
+    cursor: pointer;
+    display: none;
+    align-items: center; justify-content: center;
+    flex-shrink: 0;
+    transition: all 0.15s;
+  }
+  .mic-btn.visible { display: flex; }
+  .mic-btn svg { width: 16px; height: 16px; fill: var(--ink2); }
+  .mic-btn.recording {
+    background: #FEF2F2;
+    border-color: var(--red);
+    animation: micpulse 1s infinite;
+  }
+  .mic-btn.recording svg { fill: var(--red); }
+  @keyframes micpulse { 0%,100%{opacity:1} 50%{opacity:0.5} }
 </style>
 </head>
 <body>
@@ -898,24 +920,18 @@
         <div class="landing-step">
           <div class="landing-step-num">2</div>
           <div class="landing-step-content">
-            <div class="landing-step-title">API key'ini ekle</div>
-            <div class="landing-step-desc">Arena'nın çalışması için bir API key gerekiyor. <a href="https://console.anthropic.com" target="_blank">Buradan</a> 2 dakikada ücretsiz alabilirsin — yeni hesaplara tanınan krediyle <strong>yaklaşık 250 görüşme</strong> ücretsiz.</div>
+            <div class="landing-step-title">Sahayı seç, masaya otur</div>
+            <div class="landing-step-desc">Müşteri tipi, sektör, kanal ve zorluk seviyeni belirle. Arena sana gerçekçi bir müşteri karakteriyle karşı çıkar.</div>
           </div>
         </div>
         <div class="landing-step">
           <div class="landing-step-num">3</div>
           <div class="landing-step-content">
-            <div class="landing-step-title">Sahayı seç, masaya otur</div>
+            <div class="landing-step-title">Analiz raporunu al</div>
             <div class="landing-step-desc">Müşteri tipi, sektör, kanal, lead sıcaklığı, satış aşaması ve zorluk seviyeni belirle. AI gerçekçi bir müşteri karakteriyle karşına çıkar.</div>
           </div>
         </div>
-        <div class="landing-step">
-          <div class="landing-step-num">4</div>
-          <div class="landing-step-content">
-            <div class="landing-step-title">Analiz raporunu al</div>
-            <div class="landing-step-desc">Senaryo bittikten sonra skor, durum ve stratejik öneri içeren detaylı bir analiz raporu gelir. Gelişim geçmişin birikmeye başlar.</div>
-          </div>
-        </div>
+
       </div>
     </div>
 
@@ -958,12 +974,38 @@
   </header>
 
   <div class="key-panel" id="key-panel">
-    <label class="field-label">Anthropic API Key</label>
+    <div style="margin-bottom:12px;">
+      <div style="font-size:13px;font-weight:500;color:var(--ink);margin-bottom:4px;">Son bir adım — API key'ini ekle</div>
+      <div style="font-size:12px;color:var(--ink2);line-height:1.6;">Arena yapay zeka ile çalışıyor. Bunun için ücretsiz bir Anthropic hesabı gerekiyor.</div>
+    </div>
+    <div style="background:var(--paper2);border:1px solid var(--rule);border-radius:8px;padding:12px 14px;margin-bottom:12px;display:flex;flex-direction:column;gap:6px;">
+      <div style="font-size:10px;font-family:'JetBrains Mono',monospace;letter-spacing:0.08em;text-transform:uppercase;color:var(--ink3);margin-bottom:2px;">Nasıl alırım?</div>
+      <div style="display:flex;align-items:center;gap:8px;font-size:12px;color:var(--ink2);">
+        <span style="width:16px;height:16px;background:var(--red);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:8px;font-weight:700;color:#fff;flex-shrink:0;">1</span>
+        <span><a href="https://console.anthropic.com" target="_blank" style="color:var(--red);font-weight:500;">console.anthropic.com</a> adresine git</span>
+      </div>
+      <div style="display:flex;align-items:center;gap:8px;font-size:12px;color:var(--ink2);">
+        <span style="width:16px;height:16px;background:var(--red);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:8px;font-weight:700;color:#fff;flex-shrink:0;">2</span>
+        <span><strong style="color:var(--ink);">Sign Up</strong> ile ücretsiz hesap aç</span>
+      </div>
+      <div style="display:flex;align-items:center;gap:8px;font-size:12px;color:var(--ink2);">
+        <span style="width:16px;height:16px;background:var(--red);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:8px;font-weight:700;color:#fff;flex-shrink:0;">3</span>
+        <span>Sol menüden <strong style="color:var(--ink);">API Keys → Create Key</strong></span>
+      </div>
+      <div style="display:flex;align-items:center;gap:8px;font-size:12px;color:var(--ink2);">
+        <span style="width:16px;height:16px;background:var(--red);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:8px;font-weight:700;color:#fff;flex-shrink:0;">4</span>
+        <span>Kopyala, aşağıya yapıştır</span>
+      </div>
+      <div style="margin-top:4px;padding:6px 10px;background:var(--paper3);border-radius:5px;font-size:11px;color:var(--ink2);">
+        💡 Yeni hesaplara <strong style="color:var(--ink);">$5 ücretsiz kredi</strong> — yaklaşık <strong style="color:var(--ink);">250 görüşme</strong> ücretsiz
+      </div>
+    </div>
+    <label class="field-label">API Key</label>
     <div class="key-row">
       <input class="key-input" id="key-inp" type="password" placeholder="sk-ant-…" autocomplete="off" spellcheck="false" />
       <button class="key-btn" id="key-save">Kaydet</button>
     </div>
-    <div class="key-note" id="key-note">console.anthropic.com → API Keys</div>
+    <div class="key-note" id="key-note">Key sadece bu oturumda kullanılır, hiçbir yere gönderilmez.</div>
   </div>
 
   <div class="history-panel" id="history-panel" style="margin:0 0 0;border-radius:0;border-left:none;border-right:none;border-top:none;">
@@ -1316,6 +1358,11 @@ document.getElementById('cta').onclick = async () => {
   document.getElementById('hdr-ctx').textContent = `${S.sektor} · ${S.asama?.split(' ')[0]} · ${S.zorluk?.split(' ')[0]}`;
   document.getElementById('live-badge').classList.add('on');
   showChannelBadge();
+  // Giriş mesajını ve geçmiş panelini gizle
+  const welcomeMsg = document.querySelector('#msgs .msg.from-system');
+  if (welcomeMsg) welcomeMsg.style.display = 'none';
+  const histPanel = document.getElementById('history-panel');
+  if (histPanel) histPanel.style.display = 'none';
   document.getElementById('timer').classList.add('on');
   // Start timer
   let secs = 0;
@@ -1329,6 +1376,7 @@ document.getElementById('cta').onclick = async () => {
   const ia = document.createElement('div');
   ia.className='input-area'; ia.id='input-area';
   ia.innerHTML=`
+    <button class="mic-btn" id="mic-btn" title="Sesle yaz"><svg viewBox="0 0 16 16"><path d="M3.5 6.5A.5.5 0 0 1 4 7v1a4 4 0 0 0 8 0V7a.5.5 0 0 1 1 0v1a5 5 0 0 1-4.5 4.975V15h3a.5.5 0 0 1 0 1h-7a.5.5 0 0 1 0-1h3v-2.025A5 5 0 0 1 3 8V7a.5.5 0 0 1 .5-.5z"/><path d="M10 8a2 2 0 1 1-4 0V3a2 2 0 0 1 4 0v5z"/></svg></button>
     <textarea class="chat-input" id="ci" rows="1" placeholder="Satışçı olarak yaz…"></textarea>
     <button class="send-btn" id="sb"><svg viewBox="0 0 14 14"><path d="M1 7l12-6-4 6 4 6z"/></svg></button>`;
   document.querySelector('.shell').appendChild(ia);
@@ -1337,6 +1385,55 @@ document.getElementById('cta').onclick = async () => {
   ci.addEventListener('keydown', e => { if(e.key==='Enter'&&!e.shiftKey){e.preventDefault();send();} });
   ci.addEventListener('input', () => { ci.style.height='auto'; ci.style.height=ci.scrollHeight+'px'; });
   document.getElementById('sb').onclick = send;
+
+  // Telefon kanalında mikrofon göster
+  const isPhone = S.kanal && (S.kanal.toLowerCase().includes('telefon') || S.kanal.toLowerCase().includes('sesli'));
+  if (isPhone) {
+    const micBtn = document.getElementById('mic-btn');
+    micBtn.classList.add('visible');
+    let recognition = null;
+    let recording = false;
+
+    if ('webkitSpeechRecognition' in window || 'SpeechRecognition' in window) {
+      const SR = window.SpeechRecognition || window.webkitSpeechRecognition;
+      recognition = new SR();
+      recognition.lang = 'tr-TR';
+      recognition.continuous = false;
+      recognition.interimResults = false;
+
+      recognition.onresult = (e) => {
+        const transcript = e.results[0][0].transcript;
+        const ci = document.getElementById('ci');
+        ci.value += (ci.value ? ' ' : '') + transcript;
+        ci.style.height = 'auto';
+        ci.style.height = ci.scrollHeight + 'px';
+      };
+      recognition.onend = () => {
+        recording = false;
+        micBtn.classList.remove('recording');
+      };
+      recognition.onerror = () => {
+        recording = false;
+        micBtn.classList.remove('recording');
+      };
+    }
+
+    micBtn.onclick = () => {
+      if (!recognition) {
+        alert('Tarayıcınız ses tanımayı desteklemiyor. Chrome kullanın.');
+        return;
+      }
+      if (recording) {
+        recognition.stop();
+        recording = false;
+        micBtn.classList.remove('recording');
+      } else {
+        recognition.start();
+        recording = true;
+        micBtn.classList.add('recording');
+      }
+    };
+  }
 
   const opening = await call([{ role:'user', content:'Merhaba, sizi aramıştım.' }]);
   S.history = [
@@ -1377,34 +1474,67 @@ async function send() {
 }
 
 function sysPrompt() {
-  return `Sen, Yusuf Aras'ın "Satış Mühendisliği" felsefesini temsil eden Baş Değerlendiricisin. Müşteri rolü oynarsın.
+  const kanalAtmos = {
+    dm: "Kısa, soğuk, mesajlaşma dili kullan. Cümleler 1-2 satır. Emoji yok. Noktalama az. WhatsApp/Instagram DM havasında yaz. 'Kim bu?', 'Ne istiyorsunuz?' gibi tepkiler ver.",
+    linkedin: "Profesyonel ama mesafeli. Kısa paragraflar. LinkedIn DM havasında. 'Profilinizi gördüm ama...' gibi açılışlara hazır ol.",
+    telefon: "Konuşma dili kullan, yazılı değil. Kısa cümleler, doğal akış. 'Alo?', 'Sizi duyuyorum', 'Bekleyin bir dakika' gibi telefon ifadeleri. Kesintiler olabilir.",
+    toplanti: "Yüz yüze ortam. Beden dili referansları ver. 'Şu tabloya bakabilir miyiz?', 'Koltuğunuza geçin' gibi. Tempo ölçülü.",
+    video: "Online toplantı havası. 'Sesi duyuyor musunuz?', 'Ekranı paylaşabilir misiniz?' gibi referanslar. Biraz daha resmi ama esnek.",
+    eposta: "Yazılı, asenkron ton. Mesajlar biraz daha uzun olabilir. 'Mailinizi aldım', 'Teklifinizi inceledim' gibi.",
+    kurumsal: "Formal, çok paydaşlı. 'Hukuk departmanına danışmam lazım', 'Satın alma sürecimiz var', 'Yönetim kuruluna sunmam gerekiyor' gibi."
+  };
 
-SENARYO → Müşteri: ${S.musteri} | Sektör: ${S.sektor} | Kanal: ${S.kanal} | Lead Sıcaklığı: ${S.sicaklik} | Satış Aşaması: ${S.asama} | Paket: ${S.paket} | Zorluk: ${S.zorluk}
+  let atmos = kanalAtmos.dm;
+  const k = (S.kanal || '').toLowerCase();
+  if (k.includes('linkedin')) atmos = kanalAtmos.linkedin;
+  else if (k.includes('telefon') || k.includes('sesli')) atmos = kanalAtmos.telefon;
+  else if (k.includes('toplantı') || k.includes('yüz')) atmos = kanalAtmos.toplanti;
+  else if (k.includes('video') || k.includes('zoom')) atmos = kanalAtmos.video;
+  else if (k.includes('e-posta') || k.includes('mail')) atmos = kanalAtmos.eposta;
+  else if (k.includes('kurumsal') || k.includes('b2b')) atmos = kanalAtmos.kurumsal;
 
-KURALLAR:
-- Stajyer seviyesinde: müşteri sabırlı, hata payı yüksek, öğretici ol.
-- Saha Temsilcisi seviyesinde: müşteri aceleci ve sert, hatalar pahalı.
-- Satış Mühendisi seviyesinde: müşteri aman vermez, tek büyük hata kapıyı kapatır — sen de aman verme.
-- Kanalı (${S.kanal}) gerçekçi yansıt: DM'de kısa ve soğuk, telefonda kesintisiz, toplantıda beden dili ve tempo önemli, e-postada kelime ekonomisi.
-- Lead sıcaklığını (${S.sicaklik}) karaktere yansıt: Soğuk'ta "siz kimsiniz, nereden buldunuz numaramı" savunmacılığı; Ilık'ta "duydum ama ikna olmadım" mesafesi; Sıcak'ta "tamam dinliyorum, ama fiyat ve değer konusunda ikna et" modunda ol.
-- Gerçekçi itirazlar: fiyat, zaman, yetki, rakip.
-- STRESS MODLARI: bilmişlik → "Siz bana işimi mi öğretiyorsunuz?" / fiyat tavizi → "Belli ki ürünün sabit değeri yok" / "Patrona sorarım" → karar vericiye ulaşmayı test et.
-- 8–12 mesaj sonunda veya satış kapanınca/kopunca aşağıdaki formatta "SATIŞ ANALİZ RAPORU" yaz. Her bölümü tam olarak bu başlıklarla yaz:
+  return `SEN BİR ALICI/MÜŞTERİSİN. SATIŞ YAPMA. HİÇBİR ZAMAN SATICI ROLÜNE GEÇMEYECEKSİN.
+
+ROL: Sen potansiyel bir müşterisin. Karşındaki kişi sana bir şey satmaya çalışıyor. Sen dinliyorsun, sorguluyorsun, itiraz ediyorsun. Satıcı DEĞİLSİN.
+
+SENARYO:
+- Müşteri Tipi: ${S.musteri}
+- Sektör: ${S.sektor}
+- Kanal: ${S.kanal}
+- Lead Sıcaklığı: ${S.sicaklik}
+- Satış Aşaması: ${S.asama}
+- Paket: ${S.paket}
+- Zorluk: ${S.zorluk}
+
+KANAL ATMOSFERI: ${atmos}
+
+MÜŞTERİ KARAKTER KURALI:
+- ${S.musteri} profiline uygun düşün, konuş, itiraz et
+- ${S.sektor} sektörüne özgü itirazlar kullan
+- ${S.sicaklik} lead sıcaklığına göre davran: Soğuk=savunmacı, Ilık=mesafeli, Sıcak=ilgili ama ikna edilmesi lazım
+- ${S.zorluk} modunda: Stajyer=sabırlı ve affedici, Saha Temsilcisi=aceleci ve sert, Satış Mühendisi=aman verme
+
+STRESS MODLARI:
+- Satışçı bilmişlik yaparsa: "Siz bana işimi mi öğretiyorsunuz?" de ve sertleş
+- Fiyatta taviz teklif edilirse: "Belli ki ürününüzün sabit bir değeri yok" diyerek güven kaybet
+- "Patrona sorarım" bahanesini kullan ve satışçının karar vericiye ulaşıp ulaşamadığını test et
+
+CEVAP UZUNLUĞU: Kısa ve gerçekçi. 1-3 cümle. Müşteri gibi konuş, anlatı yazmıyorsun.
+
+8-12 MESAJ SONUNDA VEYA SATIŞ KAPANINCA/KOPUNCA aşağıdaki formatta rapor yaz. SADECE BU FORMATI KULLAN, TEKRAR ETME:
 
 SATIŞ ANALİZ RAPORU
 Skor: [0-100]
 Durum: [KAZANILDI] veya [KAYBEDİLDİ] veya [TERKEDİLDİ]
 
 Kritik Hatalar (Acı Reçete):
-[Satışçının nerede çuvalladığını maddeler halinde, net ve acı bir dille yaz]
+[Net maddeler, kısa]
 
 Güçlü Kaslar:
-[İyi yönetilen anları ve güçlü hamleleri tebrik et]
+[Net maddeler, kısa]
 
 Mühendislik Önerisi:
-[O satışı kapatacak olan tek stratejik hamleyi teknik olarak açıkla]
-
-Kısa, gerçekçi, Türkçe. Müşteri gibi konuş.`;
+[Tek stratejik hamle, somut]`;
 }
 
 async function call(messages) {
